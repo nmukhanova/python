@@ -1,28 +1,56 @@
 #simple div
-str_input = input("A: ")
 
-A = int(str_input)
-#print(type(A))
+str_command = input("Please type command a + b or a-b: ")
 
+str_A = ''
+str_B = ''
+operation = ''
+'''
 
-operation = raw_input ("+ / * - ^ : ") 
+2.5 ^ 3
 
-str_input2 = input("B: ")
-B = int(str_input2)
-#print(type(B))
+'''
+for letter in str_command:
+	print(letter)
+	if letter == '+' or letter == '-' or letter == '*' or letter == '/' or letter == '^':
+		operation = letter
+	else:	
+		if operation == '':
+			str_A = str_A + letter
+		else:
+			str_B = str_B + letter
+
+str_A = str_A.strip()
+str_B = str_B.strip()
+print(str_A)
+print(str_B)
+
+#str_input = input("A: ")
+
+delimoe = float(str_A)
+#print(type(delimoe))
+
+#operation = input ("+ / * - ^ : ") 
+
+#str_input2 = input("B: ")
+delitel = float(str_B)
+#print(type(delitel))
 result = None
 
 if operation == '/':
-    result = A / B
+    if delitel == 0:
+    	result = 'Inf'
+    else:
+    	result = delimoe / delitel
 #print(type(result))
 elif operation == '+':
-	result= A + B
+	result= delimoe + delitel
 elif operation == '-':
-	result = A - B
+	result = delimoe - delitel
 elif operation == '*':
-	result = A * B
+	result = delimoe * delitel
 elif operation == '^':
-	result = A ** B
+	result = delimoe ** delitel
 
 else: 
 	result = "unknown"
