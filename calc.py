@@ -9,25 +9,23 @@ signSecond = ''
 str_B = ''
 
 operation = ''
-'''
+i=0
 
-2.5 ^ 3
-
-'''
-for letter in str_command:
-	print(letter)
-	if letter == '+' or letter == '-' or letter == '*' or letter == '/' or letter == '^':
+while i < len(str_command):
+	print (str_command [i])
+	if str_command[i] == '+' or str_command[i] == '-' or str_command[i] == '*' or str_command[i] == '/' or str_command[i] == '^':
 		if str_A == '':
-			signFirst = letter
+			signFirst = str_command[i]
 		elif operation != '':
-			signSecond = letter
+			signSecond = str_command[i]
 		else:
-			operation = letter
+			operation = str_command[i]
 	else:	
 		if operation == '':
-			str_A = str_A + letter
+			str_A = str_A + str_command[i]
 		else:
-			str_B = str_B + letter
+			str_B = str_B + str_command[i]
+	i += 1 #i=i+1
 
 str_A = signFirst + str_A.strip()
 str_B = signSecond + str_B.strip()
