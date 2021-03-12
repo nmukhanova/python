@@ -26,6 +26,7 @@ while i < len(str_command):
 		else:
 			str_B = str_B + str_command[i]
 	i += 1 #i=i+1
+	pass
 
 str_A = signFirst + str_A.strip()
 str_B = signSecond + str_B.strip()
