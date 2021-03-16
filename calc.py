@@ -1,68 +1,47 @@
-#simple div
+#my calc
 
 str_command = input("Please type command a + b or a-b: ")
+str_command.replace(' ','')
 
-signFirst = ''
+'''
+parsing
+2+-2
+'''
+
 str_A = ''
-
-signSecond = ''
 str_B = ''
+variables = ['']
+operations = []
 
-operation = ''
-i=0
+for i, letter in enumerate(str_command):
+	if letter in '+-*/^' and (i > 0) and variables[len(operations)] != '':
+		operations.append(letter)
+		variables.append('')
+	else:
+		index = len(operations)
+		variables[index] = variables[index] + letter
 
-while i < len(str_command):
-	print (str_command [i])
-	if str_command[i] == '+' or str_command[i] == '-' or str_command[i] == '*' or str_command[i] == '/' or str_command[i] == '^':
-		if str_A == '':
-			signFirst = str_command[i]
-		elif operation != '':
-			signSecond = str_command[i]
+'''
+calculation
+'''
+variables = list(map(float, variables))
+result = variables[0]
+
+for i, operation in enumerate(operations):
+	if type(result) == str:
+		break
+
+	var_A = result
+	var_B = variables[i+1]
+
+	if operation in '+-*/':
+		if var_B == 0 and operation == '/':
+			result = 'Inf'
 		else:
-			operation = str_command[i]
-	else:	
-		if operation == '':
-			str_A = str_A + str_command[i]
-		else:
-			str_B = str_B + str_command[i]
-	i += 1 #i=i+1
-	pass
-
-str_A = signFirst + str_A.strip()
-str_B = signSecond + str_B.strip()
-print(str_A)
-print(str_B)
-
-#str_input = input("A: ")
-
-delimoe = float(str_A)
-#print(type(delimoe))
-
-#operation = input ("+ / * - ^ : ") 
-
-#str_input2 = input("B: ")
-delitel = float(str_B)
-#print(type(delitel))
-result = None
-
-if operation == '/':
-    if delitel == 0:
-    	result = 'Inf'
-    else:
-    	result = delimoe / delitel
-#print(type(result))
-elif operation == '+':
-	result= delimoe + delitel
-elif operation == '-':
-	result = delimoe - delitel
-elif operation == '*':
-	result = delimoe * delitel
-elif operation == '^':
-	result = delimoe ** delitel
-
-else: 
-	result = "unknown"
-#print(type(result))
+			result = eval('{0}{1}{2}'.format(var_A, operation, var_B))
+	elif operation == '^':
+		result = var_A ** var_B
+	else:
+		result = "unknown"
 
 print("Result: " + str(result))
-
