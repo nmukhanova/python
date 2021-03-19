@@ -1,12 +1,11 @@
-#my calc
-
 str_command = input("Please type command a + b or a-b: ")
 str_command.replace(' ','')
 
-'''
-parsing
-2+-2
-'''
+priority1 = tuple('^')
+priority2 = tuple('*/')
+priority3 = ('+', '-')
+operation_priority = priority1 + priority2 + priority3
+charts = tuple(map(str, range(10))) + tuple('.-')
 
 str_A = ''
 str_B = ''
@@ -14,16 +13,14 @@ variables = ['']
 operations = []
 
 for i, letter in enumerate(str_command):
-	if letter in '+-*/^' and (i > 0) and variables[len(operations)] != '':
+	if letter in operation_priority and (i > 0) and variables[len(operations)] != '':
 		operations.append(letter)
 		variables.append('')
 	else:
 		index = len(operations)
 		variables[index] = variables[index] + letter
 
-'''
-calculation
-'''
+
 variables = list(map(float, variables))
 result = variables[0]
 
