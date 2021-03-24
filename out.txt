@@ -1,7 +1,0 @@
-Please type command a + b or a-b: -
-5
-^
-2
--5
-2
-Result: 25.0
