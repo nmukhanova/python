@@ -6,10 +6,9 @@ import tkinter as tk
 window = tk.Tk()
 window.title("Расчёт эффективности маркетинговых акций")
 window.geometry('1024x1024')
-window["bg"] = "#1E90FF"
+window["bg"] = "#f0f8ff"
 label = tk.Label(
-	text = "Здесь будет красивый интерфейс, но это не точно",
-	fg = "#FFFFFF")
+	text = "Введите исходные данные для расчёта", bg = "#f0f8ff", font = ("Arial Bold", 40))
 label.pack()
 
 window.mainloop()
