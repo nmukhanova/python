@@ -4,9 +4,14 @@
 import tkinter as tk
  
 window = tk.Tk()
-label = tk.Label(text="Здесь будет красивый интерфейс, но это не точно")
+window.title("Расчёт эффективности маркетинговых акций")
+window.geometry('1024x1024')
+window["bg"] = "#1E90FF"
+label = tk.Label(
+	text = "Здесь будет красивый интерфейс, но это не точно",
+	fg = "#FFFFFF")
 label.pack()
- 
+
 window.mainloop()
 
 '''
