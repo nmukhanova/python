@@ -2,11 +2,6 @@
 
 #интерфейс
 import tkinter as tk
- 
-window = tk.Tk()
-window.title("Расчёт эффективности маркетинговых акций")
-window.geometry('1024x1024')
-window["bg"] = "#f0f8ff"
 
 '''
 первый этап - ввод исходных данных:
@@ -15,55 +10,30 @@ window["bg"] = "#f0f8ff"
 средний чек план/факт
 коэффициент транзакции план/факт
 '''
-def mycom ():
-	e = edit.get()
+class App(tk.Tk):
+	def __init__(self):
+		super().__init__()
+		group1 = tk.LabelFrame(self, padx=15, pady=10, text="Введите исходные данные для расчёта")
+		group1.pack(padx = 10, pady = 5)
 
-label_a = tk.Label(text = "Введите исходные данные для расчёта", bg = "#f0f8ff", font = ("Arial Bold", 40))
-label_a.pack()
+		tk.Label(group1, text = "Количество участников").grid(row=0)
+		tk.Label(group1, text = "Коэффициент конверсии").grid(row=1)
+		tk.Label(group1, text = "Средний чек").grid(row=2)
+		tk.Label(group1, text = "Коэффициент транзакции").grid(row=3)
+		tk.Entry(group1).grid(row=0, column=1, sticky=tk.W)
+		tk.Entry(group1).grid(row=1, column=1, sticky=tk.W)
+		tk.Entry(group1).grid(row=2, column=1, sticky=tk.W)
+		tk.Entry(group1).grid(row=3, column=1, sticky=tk.W)
 
-#участники
-label_b = tk.Label(text = "Количество участников акции", bg = "#f0f8ff", font = ("Arial", 28))
-label_b.pack()
+		self.btn_submit = tk.Button(self, text = "Рассчитать")
+		self.btn_submit.pack(padx=10, pady=10, side=tk.RIGHT)
 
-edit = tk.Entry (window, width = 20, bg = 'white')
-edit.pack()
-
-button1 = tk.Button (window, text = 'Вычислить', command = mycom)
-button1.pack()
-
-#конверсия
-
-label_c = tk.Label(text = "Коэффициент конверсии", bg = "#f0f8ff", font = ("Arial", 28))
-label_c.pack()
-
-edit1 = tk.Entry (window, width = 20, bg = 'white')
-edit1.pack()
-
-button2 = tk.Button (window, text = 'Вычислить', command = mycom)
-button2.pack()
-
-#средний чек
-label_c = tk.Label(text = "Средний чек", bg = "#f0f8ff", font = ("Arial", 28))
-label_c.pack()
-
-edit1 = tk.Entry (window, width = 20, bg = 'white')
-edit1.pack()
-
-button2 = tk.Button (window, text = 'Вычислить', command = mycom)
-button2.pack()
-
-#транзакции
-label_c = tk.Label(text = "Коэффициент транзакции", bg = "#f0f8ff", font = ("Arial", 28))
-label_c.pack()
-
-edit1 = tk.Entry (window, width = 20, bg = 'white')
-edit1.pack()
-
-button2 = tk.Button (window, text = 'Вычислить', command = mycom)
-button2.pack()
-
-window.mainloop()
-
+if __name__ == "__main__":
+	app = App()
+	app.title("Расчёт эффективности маркетинговых акций")
+	app.geometry('1024x1024')
+	app["bg"] = "#f0f8ff"
+	app.mainloop()
 
 '''
 второй этап - расчёт затрат на проведение акции
