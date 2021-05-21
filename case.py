@@ -7,11 +7,6 @@ window = tk.Tk()
 window.title("Расчёт эффективности маркетинговых акций")
 window.geometry('1024x1024')
 window["bg"] = "#f0f8ff"
-label = tk.Label(
-	text = "Введите исходные данные для расчёта", bg = "#f0f8ff", font = ("Arial Bold", 40))
-label.pack()
-
-window.mainloop()
 
 '''
 первый этап - ввод исходных данных:
@@ -20,6 +15,55 @@ window.mainloop()
 средний чек план/факт
 коэффициент транзакции план/факт
 '''
+def mycom ():
+	e = edit.get()
+
+label_a = tk.Label(text = "Введите исходные данные для расчёта", bg = "#f0f8ff", font = ("Arial Bold", 40))
+label_a.pack()
+
+#участники
+label_b = tk.Label(text = "Количество участников акции", bg = "#f0f8ff", font = ("Arial", 28))
+label_b.pack()
+
+edit = tk.Entry (window, width = 20, bg = 'white')
+edit.pack()
+
+button1 = tk.Button (window, text = 'Вычислить', command = mycom)
+button1.pack()
+
+#конверсия
+
+label_c = tk.Label(text = "Коэффициент конверсии", bg = "#f0f8ff", font = ("Arial", 28))
+label_c.pack()
+
+edit1 = tk.Entry (window, width = 20, bg = 'white')
+edit1.pack()
+
+button2 = tk.Button (window, text = 'Вычислить', command = mycom)
+button2.pack()
+
+#средний чек
+label_c = tk.Label(text = "Средний чек", bg = "#f0f8ff", font = ("Arial", 28))
+label_c.pack()
+
+edit1 = tk.Entry (window, width = 20, bg = 'white')
+edit1.pack()
+
+button2 = tk.Button (window, text = 'Вычислить', command = mycom)
+button2.pack()
+
+#транзакции
+label_c = tk.Label(text = "Коэффициент транзакции", bg = "#f0f8ff", font = ("Arial", 28))
+label_c.pack()
+
+edit1 = tk.Entry (window, width = 20, bg = 'white')
+edit1.pack()
+
+button2 = tk.Button (window, text = 'Вычислить', command = mycom)
+button2.pack()
+
+window.mainloop()
+
 
 '''
 второй этап - расчёт затрат на проведение акции
