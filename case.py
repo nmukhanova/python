@@ -1,15 +1,14 @@
 #тема: Разработка методики расчёта эффективности маркетинговых акций АО «Международный аэропорт Сочи»
 
 from tkinter import *
-from tkinter import messagebox
 
-#первая страница: фоновое изображение + кнопка "Начать"
+#главная страница: фоновое изображение + кнопка "Начать"
 def mainWindow1(*w,**kw):
     root = Tk()
     root.resizable(width = False, height = False)
     root.geometry('1400x1024')
     root.title("Расчёт эффективности маркетинговых акций")
-    root.iconbitmap( '/Users/user/Desktop/test/plane.ico' ) #почему-то не отображается иконка приложения
+    root.iconbitmap( '/Users/user/Desktop/test/aircraft.ico' )
     background = Canvas(root)
     filename = PhotoImage(file = "/Users/user/Desktop/test/Расчёт эффективности маркетинговых акций.png")
     background_label = Label(root, image=filename)
@@ -21,148 +20,100 @@ def mainWindow1(*w,**kw):
 
     but1 = Button(root,
                         text = "Начать",
-                        font = 'Arial 20',
+                        font = ('Arial Bold', 20),
                         command = butCallback )
     but1.pack(padx = 555, pady = 400, side = BOTTOM)
     root.mainloop()
 
-'''
-первый этап - ввод исходных данных:
-количество участников акции план/факт
-конверсия план/факт
-средний чек план/факт
-коэффициент транзакции план/факт
-постоянные затраты план/факт
-переменные затраты план/факт
-'''
+#второе окно: ввод исходных данных
 def mainWindow2(*w,**kw):
     root = Tk()
     root.resizable(width = False, height = False)
     root.geometry('1400x1024')
     root.title("Расчёт эффективности маркетинговых акций")
-    root.iconbitmap( '/Users/user/Desktop/test/plane.ico' )
+    root.iconbitmap( '/Users/user/Desktop/test/aircraft.ico' )
     root["bg"] = "white"
 
-    def check(event):
-        M = members.get()
-        C = conversion.get()
-        B = bill.get()
-        T = transaction.get()
-        F = fc.get()
-        V = vc.get()
+    frame = Frame(root)
+    frame.pack()
 
-        if not M and not C and not B and not T and not F and not V:
-            messagebox.showerror('Error', 'Введите данные!')  
-        elif not M and C and B and T and F and V:
-            messagebox.showerror('Error', 'Введите данные!')
-        elif not C and M and B and T and F and V:
-            messagebox.showerror('Error', 'Введите данные!')
-        if M and C and B and T and F and V:
-            def butCallback():
-                root.destroy()
-                mainWindow3()
-            but1 = Button(root, text ="Выполнить расчет",
-                font = ('Arial Bold', 20), command = butCallback )    
-            but1.pack(padx = 555, pady = 400, side = BOTTOM)  
-            text1 = Text(root)    
-            text1.pack()
-            root.mainloop() 
-
-    text_members = Label(text = 'Количество участников', font = ('Arial Bold', 20), 
-        fg = 'black')
-
-    members = Entry(root, font = ('Arial Bold', 20),
-        fg = 'black',bg = '#CEECF5',
-        relief = 'raised',
-        justify = 'left',
-        show = '')
-
-
-    text_conversion = Label(text = 'Коэффициент конверсии', font = ('Arial Bold', 20), 
-        fg = 'black')
-    conversion = Entry(root, font = 'Arial 20',
-        fg = 'black', bg = '#CEECF5',
-        relief = 'raised',
-        justify = 'left',
-        show = '')
-
-    text_bill = Label(text = 'Средний чек', font = ('Arial Bold', 20), 
-        fg = 'black')
-    bill = Entry(root, font = 'Arial 20',
-        fg = 'black',bg = '#CEECF5',
-        relief = 'raised',
-        justify = 'left',
-        show = '')
-
-    text_transaction = Label(text = 'Коэффициент транзакции', font = ('Arial Bold', 20), 
-        fg = 'black')
-    transaction = Entry(root, font = 'Arial 20',
-        fg = 'black',bg = '#CEECF5',
-        relief = 'raised',
-        justify = 'left',
-        show = '')
-
-    text_fc = Label(text = 'Постоянные затраты', font = ('Arial Bold', 20), 
-        fg = 'black')
-    fc = Entry(root, font = 'Arial 20',
-        fg = 'black',bg = '#CEECF5',
-        relief = 'raised',
-        justify = 'left',
-        show = '')
-
-    text_vc = Label(text = 'Переменные затраты', font = ('Arial Bold', 20), 
-        fg = 'black')
-    vc = Entry(root, font = 'Arial 20',
-        fg = 'black',bg = '#CEECF5',
-        relief = 'raised',
-        justify = 'left',
-        show = '')
-
-    enter = Button(text = 'Выполнить расчет', font = ('Arial Bold', 20),
-        fg = 'black',
-        relief = 'raised',
-        activebackground = '#CEECF5',
-        activeforeground = 'black')
-
-
-    text_members.pack()
+    '''
+    здесь и далее должны были быть подписи для полей ввода значений, но через pack это выглядит ужасно, а grid не работает
+    ml = Label(frame, text = 'Количество участников', font = ('Arial Bold', 20), fg = 'black')
+    ml.pack(side = 'left')
+    '''
+    members = Entry(root, font = ('Arial 20'), fg = 'black',bg = '#CEECF5', relief = 'raised', justify = 'left', show = '')
     members.pack()
-    text_conversion.pack()
+
+    #cl = Label(frame, text = 'Коэффициент конверсии', font = ('Arial Bold', 20), fg = 'black')
+    #cl.pack(side='left')
+    conversion = Entry(root, font = ('Arial 20'), fg = 'black',bg = '#CEECF5', relief = 'raised', justify = 'left', show = '')
     conversion.pack()
-    text_bill.pack()
+
+    #bl = Label(frame, text = 'Средний чек', font = ('Arial Bold', 20), fg = 'black')
+    #bl.pack(side = 'left')
+    bill = Entry(root, font = ('Arial 20'), fg = 'black',bg = '#CEECF5', relief = 'raised', justify = 'left', show = '')
     bill.pack()
-    text_transaction.pack()
+
+    #tl = Label(frame, text = 'Коэффициент транзакции', font = ('Arial Bold', 20), fg = 'black')
+    #tl.pack(side = 'left')
+    transaction = Entry(root, font = ('Arial 20'), fg = 'black',bg = '#CEECF5', relief = 'raised', justify = 'left', show = '')
     transaction.pack()
-    text_fc.pack()
+
+
+    #fcl = Label(frame, text = 'Постоянные затраты', font = ('Arial Bold', 20), fg = 'black')
+    #fcl.pack(side = 'left')
+    fc = Entry(root, font = ('Arial 20'), fg = 'black',bg = '#CEECF5', relief = 'raised', justify = 'left', show = '')
     fc.pack()
-    text_vc.pack()
+
+    #vcl = Label(frame, text = 'Переменные затраты', font = ('Arial Bold', 20), fg = 'black') 
+    #vcl.pack(side = 'left')
+    vc = Entry(root, font = ('Arial 20'), fg = 'black',bg = '#CEECF5', relief = 'raised', justify = 'left', show = '')
     vc.pack()
-    enter.pack()
 
-    enter.bind('<Button-1>', check)
+    def cost_calculator():
+        cost = float(fc.get()) + float(vc.get())
+        print(cost)
+    button_calc1 = Button(root, text="Расчет затрат", command=cost_calculator)
+    button_calc1.pack()
+
+    def revenue_calculator():
+        revenue = float(members.get()) * float(bill.get())
+        print(revenue)
+    button_calc2 = Button(root, text="Расчет выручки", command=revenue_calculator)
+    button_calc2.pack()
+
+#здесь должна была быть одна кнопка "далее" и вывод расчетов в новом окне, но тоже не получилось
+    def profit_calculator():
+        profit = float(members.get()) * float(conversion.get()) * float(bill.get()) * float(transaction.get())
+        print(profit)
+    button_calc3 = Button(root, text="Расчет прибыли", command=profit_calculator)
+    button_calc3.pack()
+
+    def bep_calculator():
+        bep = float(fc.get()) + float(vc.get())
+        print(bep)
+    button_calc4 = Button(root, text="Расчет точки безубыточности", command=bep_calculator)
+    button_calc4.pack()
+
+
+    def romi_calculator():
+        romi = (float(members.get()) * float(conversion.get()) * float(bill.get()) * float(transaction.get())) - (float(fc.get()) + float(vc.get())) / (float(fc.get()) + float(vc.get()) * 100)
+        print(romi)
+    btn = Button(root, text="Расчет ROMI", command=romi_calculator)
+    btn.pack()
+
     root.mainloop()
 
-'''
-второй этап - вывод результатов (план/факт)
-затраты = постоянные + переменные
-выручка = количество участников * средний чек
-прибыль = лиды * конверсия * средний чек * к-т транзакции
-точка безубыточности = постоянные + переменные затраты
-ROMI = (прибыль - затраты на акцию)/затраты на акцию * 100
-
-если ROMI < 100, акция неэффективна
-иначе если ROMI > 100, акция эффективна
-подсветить красным, если плановые показатели не равны фактическим
-'''
-def mainWindow3(*w,**kw):
-    root = Tk()
-    root.resizable(width = False, height = False)
-    root.geometry('1400x1024')
-    root.title("Расчёт эффективности маркетинговых акций")
-    root.iconbitmap( '/Users/user/Desktop/test/plane.ico' )
-    root["bg"] = "white"
-
-    root.mainloop()
-    
+   
 if __name__ == '__main__':
     mainWindow1()
+
+'''
+для справки
+cost(затраты) = fc + vc
+revenue(выручка) = members * bill
+profit(прибыль) = members * conversion * bill * transaction
+break_even_point(точка безубыточности) = fc + vc
+ROMI = ((revenue - cost)/cost) * 100
+'''
