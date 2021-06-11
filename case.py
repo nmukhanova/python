@@ -3,7 +3,7 @@
 from tkinter import *
 
 #главная страница: фоновое изображение + кнопка "Начать"
-def mainWindow1(*w,**kw):
+def mainWindow1():
     root = Tk()
     root.resizable(width = False, height = False)
     root.geometry('1400x1024')
@@ -26,7 +26,7 @@ def mainWindow1(*w,**kw):
     root.mainloop()
 
 #второе окно: ввод исходных данных
-def mainWindow2(*w,**kw):
+def mainWindow2():
     root = Tk()
     root.resizable(width = False, height = False)
     root.geometry('1400x1024')
